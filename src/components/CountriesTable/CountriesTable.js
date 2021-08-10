@@ -1,26 +1,27 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import {
 	KeyboardArrowDownRounded,
 	KeyboardArrowUpRounded,
-} from '@material-ui/icons'
-import { useState } from 'react'
-import styles from './CountriesTable.module.css'
+} from '@material-ui/icons';
+import { useState } from 'react';
+import styles from './CountriesTable.module.css';
 
 const orderBy = (countries, value, direction) => {
 	if (direction === 'asc') {
-		return [...countries].sort((a, b) => (a[value] > b[value] ? 1 : -1))
+		return [...countries].sort((a, b) => (a[value] > b[value] ? 1 : -1));
 	}
 
 	if (direction === 'desc') {
-		return [...countries].sort((a, b) => (a[value] > b[value] ? -1 : 1))
+		return [...countries].sort((a, b) => (a[value] > b[value] ? -1 : 1));
 	}
 
-	return countries
-}
+	return countries;
+};
 
 const SortArrow = ({ direction }) => {
+	//return empty if there is no direction
 	if (!direction) {
-		return <></>
+		return <></>;
 	}
 
 	if (direction === 'desc') {
@@ -28,36 +29,36 @@ const SortArrow = ({ direction }) => {
 			<div className={styles.heading_arrow}>
 				<KeyboardArrowDownRounded color='inherit' />
 			</div>
-		)
+		);
 	} else {
 		return (
 			<div className={styles.heading_arrow}>
 				<KeyboardArrowUpRounded color='inherit' />
 			</div>
-		)
+		);
 	}
-}
+};
 
 const CountriesTable = ({ countries }) => {
-	const [direction, setDirection] = useState()
-	const [value, setValue] = useState()
+	const [direction, setDirection] = useState();
+	const [value, setValue] = useState();
 
-	const orderedCountries = orderBy(countries, value, direction)
+	const orderedCountries = orderBy(countries, value, direction);
 
 	const switchDirection = () => {
 		if (!direction) {
-			setDirection('desc')
+			setDirection('desc');
 		} else if (direction === 'desc') {
-			setDirection('asc')
+			setDirection('asc');
 		} else {
-			setDirection(null)
+			setDirection(null);
 		}
-	}
+	};
 
 	const setValueAndDirection = (value) => {
-		switchDirection()
-		setValue(value)
-	}
+		switchDirection();
+		setValue(value);
+	};
 
 	return (
 		<div>
@@ -120,7 +121,7 @@ const CountriesTable = ({ countries }) => {
 				</Link>
 			))}
 		</div>
-	)
-}
+	);
+};
 
-export default CountriesTable
+export default CountriesTable;
